@@ -14,25 +14,24 @@ int checkVolume(char *path){
         closedir(dir);
         return 0;
     }else if(ENOENT == errno){
-        closedir(dir);
-        //printf("");
         return 1;
     }else {
-        return 1;
+        return 2;
     }
-    //printf("%s",path);
-
-
-
-    return 0;
 }
 
 int main(){
-    checkVolume("/Volumes/Data/Shared");
+    if(checkVolume("/Volumes/Data/Shared") == 0){
+        printf("\n\nVolume is present!");
+    }else if(checkVolume("/Volumes/Data/Shared") == 1){
+        printf("\n\nVolume is not present!");
+    }else{
+        printf("\n\nSomething went wrong with checking Volume presence.");
+    }
 
-    printf("Which category do you want to download?\n");
-    printf("[1] movies\n");
-    printf("[2] series\n");
+    printf("\nWhich category do you want to download?");
+    printf("\n[1] movies");
+    printf("\n[2] series");
 
     return 0;
 
