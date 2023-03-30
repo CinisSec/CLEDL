@@ -4,10 +4,7 @@
 #include <string.h>
 #include <stdio.h>
 #include <errno.h>
-
-
 //Checks if volume is available
-//TODO
 int checkVolume(char *path){
     DIR* dir = opendir(path);
     if(dir){
@@ -19,7 +16,30 @@ int checkVolume(char *path){
         return 2;
     }
 }
-
+int moviesDL(){
+    printf("\nMovies you've watched before or new ones?");
+    printf("\n[1] old movies");
+    printf("\n[2] new movies");
+    printf("\nInput choice: [1-2]");
+    int movietype;
+    scanf("%d",movietype);
+    if (movietype == 1)
+    {
+        printf("%d", movietype);
+    }else if (movietype == 2)
+    {
+        
+    }else
+    {
+        
+    }
+    printf("");
+    return 0;
+}
+int seriesDL(){
+    //TODO
+    return 0;
+}
 int main(){
     if(checkVolume("/Volumes/Data/Shared") == 0){
         printf("\n\nVolume is present!");
@@ -28,13 +48,20 @@ int main(){
     }else{
         printf("\n\nSomething went wrong with checking Volume presence.");
     }
-
     printf("\nWhich category do you want to download?");
     printf("\n[1] movies");
     printf("\n[2] series");
-
+    printf("\n\nInput choice: [1-2]");
+    int* category;
+    scanf("%d", category);
+    if (category == 1)
+    {
+        moviesDL();
+    }else if (category == 2)
+    {
+        seriesDL();
+    }else{
+        return 0;
+    }
     return 0;
-
-
 }
-
