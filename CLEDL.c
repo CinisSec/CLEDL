@@ -5,15 +5,15 @@
 #include <stdio.h>
 #include <errno.h>
 //Checks if volume is available
-int checkVolume(char *path){
+void checkVolume(char *path){
     DIR* dir = opendir(path);
     if(dir){
         closedir(dir);
-        return 0;
+        printf("\n\nVolume is present!");
     }else if(ENOENT == errno){
-        return 1;
+        printf("\n\nVolume is not present!");
     }else {
-        return 2;
+        printf("\n\nSomething went wrong with checking Volume presence.");
     }
 }
 int moviesDL(){
@@ -41,13 +41,7 @@ int seriesDL(){
     return 0;
 }
 int main(){
-    if(checkVolume("/Volumes/Data/Shared") == 0){
-        printf("\n\nVolume is present!");
-    }else if(checkVolume("/Volumes/Data/Shared") == 1){
-        printf("\n\nVolume is not present!");
-    }else{
-        printf("\n\nSomething went wrong with checking Volume presence.");
-    }
+    checkVolume("/Volumes/Data/Shared");
     printf("\nWhich category do you want to download?");
     printf("\n[1] movies");
     printf("\n[2] series");
